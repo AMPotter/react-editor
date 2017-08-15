@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ToggleButton from 'react-toggle-button';
 
 const shortHeader = <h2>My Short Message</h2>;
 const longHeader = <h1>My Message</h1>;
@@ -12,7 +13,8 @@ class App extends Component {
     this.state = {
       message: props.initialMessage,
       color: '#4682b4',
-      fontSize: 18
+      fontSize: 18,
+      fontStyle: 'normal'
     }
   }
 
@@ -31,28 +33,37 @@ class App extends Component {
         <div>
 
           <label>
-            Message:
+            Type The Words You Want To See:
             <input name="message" value={this.state.message}
               onChange={({target}) => this.handleChange(target)}/>
           </label>
 
           <label>
-            Color:
+            Font Color:
             <input name="color" value={this.state.color} type="color"
               onChange={({target}) => this.handleChange(target)}/>
           </label>
 
           <label>
             Font Size:
-            <input name="fontSize" value={this.state.size} type="fontSize"
+            <input name="fontSize" value={this.state.size}
               onChange={({target}) => this.handleChange(target)}/>
+          </label>
+
+          <label>
+            Good Old Fashioned Italics:
+          <input type="checkbox"
+            name="fontStyle"
+            value={this.state.fontStyle === "italic" ? "normal" : "italic"}
+            onChange={({target}) => this.handleChange(target)}/>
           </label>
 
         </div>
 
         <div className="display" style={{
           color: this.state.color,
-          fontSize: this.state.fontSize
+          fontSize: this.state.fontSize,
+          fontStyle: this.state.fontStyle
         }}>
           {this.state.message}
         </div>
